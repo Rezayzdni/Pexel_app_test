@@ -1,32 +1,33 @@
 os: osx
 language: generic
 before_script:
-  - brew update
-  - brew install --HEAD usbmuxd
-  - brew unlink usbmuxd
-  - brew link usbmuxd
-  - brew install --HEAD libimobiledevice
-  - brew install ideviceinstaller
-  - brew install ios-deploy
-  - git clone https://github.com/flutter/flutter.git -b beta --depth 1
+- brew update
+- brew install --HEAD usbmuxd
+- brew unlink usbmuxd
+- brew link usbmuxd
+- brew install --HEAD libimobiledevice
+- brew install ideviceinstaller
+- brew install ios-deploy
+- git clone https://github.com/flutter/flutter.git -b beta --depth 1
 script:
-  - flutter/bin/flutter build ios --debug --no-codesign
+- flutter/bin/flutter build ios --debug --no-codesign
 cache:
   directories:
-    - $HOME/.pub-cache
+  - "$HOME/.pub-cache"
 before_deploy:
-  - pushd build/ios/iphoneos
-  - mkdir Payload
-  - cd Payload
-  - ln -s ../Runner.app
-  - cd ..
-  - zip -r app.ipa Payload
-  - popd
+- pushd build/ios/iphoneos
+- mkdir Payload
+- cd Payload
+- ln -s ../Runner.app
+- cd ..
+- zip -r app.ipa Payload
+- popd
 deploy:
   provider: releases
   api_key:
-    secure: 1P3c1iFSuzvu1RQO0G0P8g
+    secure: C6xpkAMi4VSngOcxgSF4TKcrGhGI++E6flMABNjoi+j8rR3wTgEUSLGqZ9TQY5fC6vfBV99u6gRSZ3oq4pJMLW9R8mRRwRgON/eXQWdVTbNqANWQKXv2il5+HTh1mM2JYR2jT5ZtZE059mL39Ki+/SyMBP/qYpximwaMTJZrJN8KVxJfiRQgld5A8NJJ3DAb/PF25eMmZkxJFTZa8oF7kv4kAr3a+/6GdIlz6fszuFVJP86LhCEw5RzysP/2EXgUaHBinqXXHoFSH9shfy9eiYqMF6QvNDfy0d1T3PceiBMT2aDjXL8nYnsWuitE3XQrOt5AucI243EOF4BiuqbU07CpTy2CKTIhYYROsXhg5haH8JCXVZkJW6TZsiZhPzovMmoTYJXyIv+2HGp+E11UHObhG0MApww8I4NDX0BMB5miCuBAzS+Gi8iX1V1xTyv/N9McFhUC+1BGZuaHHk1QtkrC5q7WiXEq5nFrdhJ36Za+Ab44mWgd9IgXXq/asfQyfU3q2CQQ/k3w3/rhjckl4H5j+wjzFANZN3GvclAERLqr+MpgavZENKkp3IHh8T9GwOqfGTTlQPii8imiTkRcNkcyYJWUcb42IjznCPJvK0k9JrQ58YJ1YpCk1KqMYV//UlrO1MPFnejLFVG+X21AkW8oArq26i2exSFd1A3ab1A=
   file: build/ios/iphoneos/app.ipa
-  skip_cleanup: true #important or your built app would be deleted
+  skip_cleanup: true
   on:
-    repo: https://github.com/Rezayzdni/Pexel_app_test
+    repo: https://github.com/Rezayzdni/Pexel_app_test.git
+
