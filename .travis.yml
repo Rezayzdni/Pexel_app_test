@@ -22,3 +22,11 @@ before_deploy:
   - cd ..
   - zip -r app.ipa Payload
   - popd
+deploy:
+  provider: releases
+  api_key:
+    secure: 1P3c1iFSuzvu1RQO0G0P8g
+  file: build/ios/iphoneos/app.ipa
+  skip_cleanup: true #important or your built app would be deleted
+  on:
+    repo: https://github.com/Rezayzdni/Pexel_app_test
